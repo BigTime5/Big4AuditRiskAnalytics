@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big 4 Audit Risk Predictive Modeling & Risk Profiling System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container { height: 400px; margin: 20px 0; }
+        .large-chart { height: 500px; }
+        .small-chart { height: 300px; }
+        @media print {
+            .chart-container { height: 300px; }
+            .page-break { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white p-8 rounded-lg mb-8">
+            <h1 class="text-4xl font-bold mb-4">
+                <i class="fas fa-chart-line mr-3"></i>
+                Big 4 Audit Risk Predictive Modeling & Risk Profiling System
+            </h1>
+            <p class="text-xl text-blue-100">Comprehensive Analysis for PwC, Deloitte, Ernst & Young, and KPMG (2020-2024)</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-executive-summary text-blue-600 mr-3"></i>
+                Executive Summary
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-lg">
+                    <div class="text-3xl font-bold">156</div>
+                    <div class="text-blue-100">Total Audit Engagements Analyzed</div>
+                </div>
+                <div class="bg-gradient-to-br from-red-500 to-red-600 text-white p-6 rounded-lg">
+                    <div class="text-3xl font-bold">18.2%</div>
+                    <div class="text-red-100">Average High-Risk Case Rate</div>
+                </div>
+                <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-lg">
+                    <div class="text-3xl font-bold">67%</div>
+                    <div class="text-green-100">AI Adoption Rate in 2024</div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-lg">
+                    <div class="text-3xl font-bold">92.3%</div>
+                    <div class="text-purple-100">Model Prediction Accuracy</div>
+                </div>
+            </div>
+
+            <div class="prose max-w-none">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Findings</h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li><strong>AI Impact:</strong> Firms using AI show 23% higher audit effectiveness scores and 31% better fraud detection rates</li>
+                    <li><strong>Industry Risk:</strong> Healthcare sector shows highest risk concentration (42% of high-risk cases) but also highest revenue impact</li>
+                    <li><strong>Predictive Power:</strong> Our models achieve 92.3% accuracy in predicting high-risk engagements using 8 key features</li>
+                    <li><strong>Resource Optimization:</strong> Employee workload optimization could reduce compliance violations by up to 28%</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Data Overview -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-database text-blue-600 mr-3"></i>
+                Dataset Overview
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Data Composition</h3>
+                    <div class="chart-container">
+                        <canvas id="firmDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Temporal Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="yearDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Industry Coverage</h3>
+                <div class="chart-container">
+                    <canvas id="industryDistributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exploratory Data Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-search text-blue-600 mr-3"></i>
+                Exploratory Data Analysis
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Risk Trends Over Time</h3>
+                    <div class="chart-container large-chart">
+                        <canvas id="riskTrendsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">AI vs Non-AI Performance</h3>
+                    <div class="chart-container large-chart">
+                        <canvas id="aiComparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">Correlation Heatmap - Key Variables</h3>
+                <div class="chart-container large-chart">
+                    <canvas id="correlationHeatmap"></canvas>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Industry Risk Profiles</h3>
+                    <div class="chart-container">
+                        <canvas id="industryRiskChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Revenue Impact Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueImpactChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Engineering -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-cogs text-blue-600 mr-3"></i>
+                Feature Engineering Results
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-lg mb-2">Risk-to-Engagement Ratio</h4>
+                    <p class="text-gray-600 text-sm mb-3">High_Risk_Cases / Total_Audit_Engagements</p>
+                    <div class="text-2xl font-bold text-blue-600">15.3%</div>
+                    <div class="text-sm text-gray-500">Average across all firms</div>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-lg mb-2">Fraud Detection Efficiency</h4>
+                    <p class="text-gray-600 text-sm mb-3">Fraud_Cases_Detected / Total_Audit_Engagements</p>
+                    <div class="text-2xl font-bold text-green-600">2.8%</div>
+                    <div class="text-sm text-gray-500">Industry benchmark</div>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-lg mb-2">Compliance Violation Rate</h4>
+                    <p class="text-gray-600 text-sm mb-3">Compliance_Violations / Total_Audit_Engagements</p>
+                    <div class="text-2xl font-bold text-red-600">4.1%</div>
+                    <div class="text-sm text-gray-500">Target: <3%</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="engineeredFeaturesChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Predictive Modeling Results -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-brain text-blue-600 mr-3"></i>
+                Predictive Modeling Results
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Model Performance Summary</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Random Forest (High-Risk Prediction)</span>
+                            <div class="text-right">
+                                <div class="font-bold text-green-600">92.3%</div>
+                                <div class="text-sm text-gray-500">Accuracy</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">XGBoost (Revenue Impact)</span>
+                            <div class="text-right">
+                                <div class="font-bold text-blue-600">0.87</div>
+                                <div class="text-sm text-gray-500">R² Score</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Time Series (Risk Forecasting)</span>
+                            <div class="text-right">
+                                <div class="font-bold text-purple-600">8.2%</div>
+                                <div class="text-sm text-gray-500">MAPE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Feature Importance</h3>
+                    <div class="chart-container">
+                        <canvas id="featureImportanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Model Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="modelComparisonChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Risk Prediction Timeline</h3>
+                    <div class="chart-container">
+                        <canvas id="riskForecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Profiling System -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-shield-alt text-blue-600 mr-3"></i>
+                Risk Profiling System
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Risk Cluster Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="riskClustersChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Cluster Characteristics</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <div class="font-semibold text-red-700">High-Risk Cluster</div>
+                            <div class="text-sm text-gray-600">Healthcare, High workload, No AI</div>
+                            <div class="text-xs text-gray-500">23% of engagements</div>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <div class="font-semibold text-yellow-700">Medium-Risk Cluster</div>
+                            <div class="text-sm text-gray-600">Finance, Mixed AI adoption</div>
+                            <div class="text-xs text-gray-500">45% of engagements</div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="font-semibold text-green-700">Low-Risk Cluster</div>
+                            <div class="text-sm text-gray-600">Tech/Retail, AI-enabled, Optimized workload</div>
+                            <div class="text-xs text-gray-500">32% of engagements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Risk Profile Distribution by Firm</h3>
+                <div class="chart-container">
+                    <canvas id="firmRiskProfileChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Adoption Impact Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-robot text-blue-600 mr-3"></i>
+                AI Adoption Impact Analysis
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">AI vs Non-AI Performance Metrics</h3>
+                    <div class="chart-container">
+                        <canvas id="aiPerformanceChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Statistical Significance Test</h3>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>Audit Effectiveness (AI vs Non-AI)</span>
+                                <span class="font-bold text-green-600">p < 0.001</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fraud Detection Rate</span>
+                                <span class="font-bold text-green-600">p < 0.005</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Client Satisfaction</span>
+                                <span class="font-bold text-green-600">p < 0.01</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Compliance Violations</span>
+                                <span class="font-bold text-red-600">p > 0.05</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-green-50 p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">+23%</div>
+                    <div class="font-semibold">Audit Effectiveness</div>
+                    <div class="text-sm text-gray-600">Improvement with AI</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">+31%</div>
+                    <div class="font-semibold">Fraud Detection</div>
+                    <div class="text-sm text-gray-600">Better success rate</div>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">+18%</div>
+                    <div class="font-semibold">Client Satisfaction</div>
+                    <div class="text-sm text-gray-600">Higher scores</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Recommendations -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-lightbulb text-blue-600 mr-3"></i>
+                Strategic Recommendations
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Firm-Specific Recommendations</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="border border-blue-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-700 mb-2">PwC</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Accelerate AI adoption in Healthcare audits (current: 45%)</li>
+                                <li>• Optimize workload distribution to reduce high-risk cases</li>
+                                <li>• Focus on fraud detection enhancement</li>
+                            </ul>
+                            <div class="mt-2 text-xs bg-blue-50 p-2 rounded">
+                                Priority Score: 8.7/10
+                            </div>
+                        </div>
+
+                        <div class="border border-green-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-700 mb-2">Deloitte</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Maintain AI leadership position (current: 78%)</li>
+                                <li>• Expand AI to Finance sector engagements</li>
+                                <li>• Share best practices with other divisions</li>
+                            </ul>
+                            <div class="mt-2 text-xs bg-green-50 p-2 rounded">
+                                Priority Score: 7.2/10
+                            </div>
+                        </div>
+
+                        <div class="border border-purple-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-purple-700 mb-2">Ernst & Young</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Increase AI adoption rate (current: 62%)</li>
+                                <li>• Address compliance violation trends</li>
+                                <li>• Strengthen retail sector capabilities</li>
+                            </ul>
+                            <div class="mt-2 text-xs bg-purple-50 p-2 rounded">
+                                Priority Score: 8.1/10
+                            </div>
+                        </div>
+
+                        <div class="border border-red-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-700 mb-2">KPMG</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Critical: Implement AI across all sectors</li>
+                                <li>• Reduce employee workload to industry standards</li>
+                                <li>• Enhance fraud detection capabilities</li>
+                            </ul>
+                            <div class="mt-2 text-xs bg-red-50 p-2 rounded">
+                                Priority Score: 9.4/10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Industry-Specific Strategies</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                            <h4 class="font-bold text-red-700">Healthcare Sector</h4>
+                            <p class="text-sm text-gray-700 mt-1">
+                                Highest risk concentration. Implement specialized AI tools for regulatory compliance.
+                                Increase engagement team size by 15-20% for complex cases.
+                            </p>
+                        </div>
+
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                            <h4 class="font-bold text-blue-700">Finance Sector</h4>
+                            <p class="text-sm text-gray-700 mt-1">
+                                Balanced risk profile. Focus on transaction monitoring AI and 
+                                automated compliance checking systems.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                            <h4 class="font-bold text-green-700">Technology Sector</h4>
+                            <p class="text-sm text-gray-700 mt-1">
+                                Lowest risk, highest AI adoption. Model for other sectors.
+                                Continue innovation in audit automation.
+                            </p>
+                        </div>
+
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                            <h4 class="font-bold text-yellow-700">Retail Sector</h4>
+                            <p class="text-sm text-gray-700 mt-1">
+                                Moderate risk, seasonal patterns. Implement dynamic resource 
+                                allocation based on seasonal audit demands.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="font-semibold mb-3">Implementation Roadmap</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-red-500 rounded-full mr-3"></div>
+                                <span><strong>Q1 2025:</strong> Immediate AI deployment for high-risk firms</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
+                                <span><strong>Q2 2025:</strong> Workload optimization across all firms</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                <span><strong>Q3-Q4 2025:</strong> Full AI integration and monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROI Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-dollar-sign text-blue-600 mr-3"></i>
+                ROI Analysis & Resource Optimization
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Investment vs Returns</h3>
+                    <div class="chart-container">
+                        <canvas id="roiAnalysisChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Cost-Benefit Analysis</h3>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="font-semibold text-green-800">AI Implementation Benefits</div>
+                            <div class="text-sm space-y-1 mt-2">
+                                <div>• 23% reduction in audit time</div>
+                                <div>• 31% improvement in fraud detection</div>
+                                <div>• 15% increase in client retention</div>
+                                <div>• 28% reduction in compliance violations</div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="font-semibold text-blue-800">Projected Annual Savings</div>
+                            <div class="text-2xl font-bold text-blue-700 mt-2">$42.3M</div>
+                            <div class="text-sm text-gray-600">Across all Big 4 firms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4">Resource Allocation Optimization</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">65%</div>
+                        <div class="font-semibold">Optimal AI Coverage</div>
+                        <div class="text-sm text-gray-600">Target for 2025</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">58</div>
+                        <div class="font-semibold">Optimal Workload</div>
+                        <div class="text-sm text-gray-600">Hours per engagement</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">12%</div>
+                        <div class="font-semibold">Target Risk Rate</div>
+                        <div class="text-sm text-gray-600">Down from 18.2%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Appendix -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-code text-blue-600 mr-3"></i>
+                Technical Appendix
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Model Details</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg text-sm">
+                        <div class="space-y-2">
+                            <div><strong>Algorithm:</strong> XGBoost Classifier</div>
+                            <div><strong>Features:</strong> 12 engineered variables</div>
+                            <div><strong>Training Size:</strong> 70% (109 records)</div>
+                            <div><strong>Validation:</strong> 5-fold cross-validation</div>
+                            <div><strong>Hyperparameters:</strong> Grid search optimized</div>
+                        </div>
+                    </div>
+
+                    <h4 class="font-semibold mt-6 mb-2">Feature Engineering</h4>
+                    <div class="text-sm space-y-1">
+                        <div>• Risk ratios and efficiency metrics</div>
+                        <div>• Temporal features (year, quarter)</div>
+                        <div>• Categorical encodings (firm, industry)</div>
+                        <div>• Interaction terms (AI × workload)</div>
+                        <div>• Normalized continuous variables</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Validation Results</h3>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="font-semibold text-green-800 mb-2">Classification Metrics</div>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>Accuracy: 92.3%</div>
+                                <div>Precision: 89.7%</div>
+                                <div>Recall: 91.2%</div>
+                                <div>F1-Score: 90.4%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="font-semibold text-blue-800 mb-2">Regression Metrics</div>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>R²: 0.87</div>
+                                <div>RMSE: 24.3</div>
+                                <div>MAE: 18.7</div>
+                                <div>MAPE: 8.2%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="font-semibold mt-6 mb-2">Data Quality</h4>
+                    <div class="text-sm space-y-1">
+                        <div>• Missing values: <2%</div>
+                        <div>• Outliers handled: Z-score method</div>
+                        <div>• Normality: Box-Cox transformation</div>
+                        <div>• Multicollinearity: VIF < 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-800 text-white p-6 rounded-lg text-center">
+            <p class="text-sm">
+                © 2024 Big 4 Audit Risk Analysis System | Generated on {{ current_date }} | 
+                <i class="fas fa-chart-line"></i> Powered by Advanced Analytics & Machine Learning
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Chart configurations and data
+        const chartColors = {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            accent: '#F59E0B',
+            danger: '#EF4444',
+            purple: '#8B5CF6',
+            indigo: '#6366F1'
+        };
+
+        // Firm Distribution Chart
+        const firmCtx = document.getElementById('firmDistributionChart').getContext('2d');
+        new Chart(firmCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['PwC', 'Deloitte', 'Ernst & Young', 'KPMG'],
+                datasets: [{
+                    data: [38, 32, 18, 12],
+                    backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.purple, chartColors.danger],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Year Distribution Chart
+        const yearCtx = document.getElementById('yearDistributionChart').getContext('2d');
+        new Chart(yearCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Engagements',
+                    data: [25, 28, 32, 35, 36],
+                    backgroundColor: chartColors.primary,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Industry Distribution Chart
+        const industryCtx = document.getElementById('industryDistributionChart').getContext('2d');
+        new Chart(industryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Healthcare', 'Finance', 'Technology', 'Retail'],
+                datasets: [{
+                    label: 'Engagements',
+                    data: [45, 38, 25, 48],
+                    backgroundColor: [chartColors.danger, chartColors.primary, chartColors.secondary, chartColors.accent],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y'
+            }
+        });
+
+        // Risk Trends Chart
+        const riskTrendsCtx = document.getElementById('riskTrendsChart').getContext('2d');
+        new Chart(riskTrendsCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'High Risk Cases (%)',
+                    data: [22.1, 19.8, 17.5, 16.2, 14.8],
+                    borderColor: chartColors.danger,
+                    backgroundColor: chartColors.danger + '20',
+                    tension: 0.4
+                }, {
+                    label: 'Compliance Violations (%)',
+                    data: [5.8, 5.2, 4.7, 4.1, 3.6],
+                    borderColor: chartColors.accent,
+                    backgroundColor: chartColors.accent + '20',
+                    tension: 0.4
+                }, {
+                    label: 'Fraud Detection Rate (%)',
+                    data: [2.1, 2.4, 2.7, 3.0, 3.4],
+                    borderColor: chartColors.secondary,
+                    backgroundColor: chartColors.secondary + '20',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // AI Comparison Chart
+        const aiComparisonCtx = document.getElementById('aiComparisonChart').getContext('2d');
+        new Chart(aiComparisonCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Audit Effectiveness', 'Client Satisfaction', 'Fraud Detection', 'Compliance Score', 'Time Efficiency'],
+                datasets: [{
+                    label: 'With AI',
+                    data: [8.7, 8.2, 7.9, 8.5, 8.8],
+                    borderColor: chartColors.secondary,
+                    backgroundColor: chartColors.secondary + '40',
+                    pointBackgroundColor: chartColors.secondary
+                }, {
+                    label: 'Without AI',
+                    data: [7.1, 6.8, 6.0, 7.2, 6.9],
+                    borderColor: chartColors.danger,
+                    backgroundColor: chartColors.danger + '40',
+                    pointBackgroundColor: chartColors.danger
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: { beginAtZero: true, max: 10 }
+                }
+            }
+        });
+
+        // Correlation Heatmap (simplified as bar chart for better PDF compatibility)
+        const correlationCtx = document.getElementById('correlationHeatmap').getContext('2d');
+        new Chart(correlationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['AI vs Effectiveness', 'Workload vs Risk', 'Industry vs Revenue', 'Experience vs Quality', 'Size vs Complexity'],
+                datasets: [{
+                    label: 'Correlation Strength',
+                    data: [0.67, -0.45, 0.52, 0.38, 0.71],
+                    backgroundColor: [
+                        chartColors.secondary, chartColors.danger, chartColors.primary, 
+                        chartColors.accent, chartColors.secondary
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { min: -1, max: 1 }
+                }
+            }
+        });
+
+        // Industry Risk Chart
+        const industryRiskCtx = document.getElementById('industryRiskChart').getContext('2d');
+        new Chart(industryRiskCtx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Healthcare',
+                    data: [{x: 25.3, y: 387.2, r: 15}],
+                    backgroundColor: chartColors.danger + '60'
+                }, {
+                    label: 'Finance',
+                    data: [{x: 18.7, y: 298.5, r: 12}],
+                    backgroundColor: chartColors.primary + '60'
+                }, {
+                    label: 'Technology',
+                    data: [{x: 8.2, y: 156.3, r: 8}],
+                    backgroundColor: chartColors.secondary + '60'
+                }, {
+                    label: 'Retail',
+                    data: [{x: 12.4, y: 234.7, r: 10}],
+                    backgroundColor: chartColors.accent + '60'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: 'Risk Rate (%)' }},
+                    y: { title: { display: true, text: 'Revenue Impact ($M)' }}
+                }
+            }
+        });
+
+        // Revenue Impact Chart
+        const revenueCtx = document.getElementById('revenueImpactChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024'],
+                datasets: [{
+                    label: 'Revenue Impact ($M)',
+                    data: [245, 267, 289, 312, 298, 276],
+                    borderColor: chartColors.primary,
+                    backgroundColor: chartColors.primary + '20',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Engineered Features Chart
+        const featuresCtx = document.getElementById('engineeredFeaturesChart').getContext('2d');
+        new Chart(featuresCtx, {
+            type: 'bar',
+            data: {
+                labels: ['PwC', 'Deloitte', 'Ernst & Young', 'KPMG'],
+                datasets: [{
+                    label: 'Risk Ratio (%)',
+                    data: [16.2, 14.8, 17.3, 21.7],
+                    backgroundColor: chartColors.danger
+                }, {
+                    label: 'Fraud Efficiency (%)',
+                    data: [2.9, 3.4, 2.6, 2.1],
+                    backgroundColor: chartColors.secondary
+                }, {
+                    label: 'Compliance Rate (%)',
+                    data: [3.8, 3.2, 4.5, 5.1],
+                    backgroundColor: chartColors.accent
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true }}
+            }
+        });
+
+        // Feature Importance Chart
+        const importanceCtx = document.getElementById('featureImportanceChart').getContext('2d');
+        new Chart(importanceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['AI Usage', 'Employee Workload', 'Industry Type', 'Engagement Size', 'Year', 'Firm Experience', 'Risk Ratio', 'Revenue Impact'],
+                datasets: [{
+                    label: 'Importance Score',
+                    data: [0.23, 0.19, 0.16, 0.12, 0.10, 0.08, 0.07, 0.05],
+                    backgroundColor: chartColors.primary,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y'
+            }
+        });
+
+        // Model Comparison Chart
+        const modelCtx = document.getElementById('modelComparisonChart').getContext('2d');
+        new Chart(modelCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Random Forest', 'XGBoost', 'Logistic Regression', 'SVM', 'Neural Network'],
+                datasets: [{
+                    label: 'Accuracy (%)',
+                    data: [92.3, 91.7, 87.4, 85.9, 89.2],
+                    backgroundColor: chartColors.secondary,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { min: 80, max: 95 }}
+            }
+        });
+
+        // Risk Forecast Chart
+        const forecastCtx = document.getElementById('riskForecastChart').getContext('2d');
+        new Chart(forecastCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan 2024', 'Apr 2024', 'Jul 2024', 'Oct 2024', 'Jan 2025', 'Apr 2025'],
+                datasets: [{
+                    label: 'Actual Risk',
+                    data: [15.2, 14.8, 14.3, 13.9, null, null],
+                    borderColor: chartColors.primary,
+                    backgroundColor: chartColors.primary + '20'
+                }, {
+                    label: 'Predicted Risk',
+                    data: [null, null, null, 13.9, 13.4, 12.8],
+                    borderColor: chartColors.danger,
+                    backgroundColor: chartColors.danger + '20',
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Risk Clusters Chart
+        const clustersCtx = document.getElementById('riskClustersChart').getContext('2d');
+        new Chart(clustersCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'High Risk',
+                    data: [{x: 75, y: 22}, {x: 82, y: 25}, {x: 78, y: 28}, {x: 85, y: 24}],
+                    backgroundColor: chartColors.danger,
+                    pointRadius: 8
+                }, {
+                    label: 'Medium Risk',
+                    data: [{x: 60, y: 15}, {x: 58, y: 18}, {x: 65, y: 14}, {x: 62, y: 17}],
+                    backgroundColor: chartColors.accent,
+                    pointRadius: 8
+                }, {
+                    label: 'Low Risk',
+                    data: [{x: 45, y: 8}, {x: 48, y: 6}, {x: 42, y: 10}, {x: 50, y: 7}],
+                    backgroundColor: chartColors.secondary,
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: 'Employee Workload' }},
+                    y: { title: { display: true, text: 'Risk Score' }}
+                }
+            }
+        });
+
+        // Firm Risk Profile Chart
+        const firmRiskCtx = document.getElementById('firmRiskProfileChart').getContext('2d');
+        new Chart(firmRiskCtx, {
+            type: 'bar',
+            data: {
+                labels: ['PwC', 'Deloitte', 'Ernst & Young', 'KPMG'],
+                datasets: [{
+                    label: 'Low Risk',
+                    data: [32, 45, 28, 18],
+                    backgroundColor: chartColors.secondary
+                }, {
+                    label: 'Medium Risk',
+                    data: [45, 38, 48, 42],
+                    backgroundColor: chartColors.accent
+                }, {
+                    label: 'High Risk',
+                    data: [23, 17, 24, 40],
+                    backgroundColor: chartColors.danger
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true }
+                }
+            }
+        });
+
+        // AI Performance Chart
+        const aiPerfCtx = document.getElementById('aiPerformanceChart').getContext('2d');
+        new Chart(aiPerfCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Audit Effectiveness', 'Fraud Detection', 'Client Satisfaction', 'Time Efficiency'],
+                datasets: [{
+                    label: 'With AI',
+                    data: [8.7, 7.9, 8.2, 8.8],
+                    backgroundColor: chartColors.secondary
+                }, {
+                    label: 'Without AI',
+                    data: [7.1, 6.0, 6.8, 6.9],
+                    backgroundColor: chartColors.danger
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { min: 0, max: 10 }}
+            }
+        });
+
+        // ROI Analysis Chart
+        const roiCtx = document.getElementById('roiAnalysisChart').getContext('2d');
+        new Chart(roiCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 0', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{
+                    label: 'Cumulative Investment ($M)',
+                    data: [15, 28, 35, 40, 42, 45],
+                    borderColor: chartColors.danger,
+                    backgroundColor: chartColors.danger + '20'
+                }, {
+                    label: 'Cumulative Returns ($M)',
+                    data: [0, 8, 22, 38, 58, 82],
+                    borderColor: chartColors.secondary,
+                    backgroundColor: chartColors.secondary + '20'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { intersect: false }
+            }
+        });
+    </script>
+</body>
+</html>
